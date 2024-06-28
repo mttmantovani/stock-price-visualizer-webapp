@@ -25,8 +25,9 @@ const StockChart: React.FC<StockChartProps> = ({
     setData([]);
 
     const webSocketService = new WebSocketService(
-      `ws://localhost:8000/ws/${symbol}/${interval}/${period}`
+      `${symbol}/${interval}/${period}`
     );
+
     webSocketService.onMessage((data: StockData[]) => {
       if (data.length === 0) {
         setError(true);

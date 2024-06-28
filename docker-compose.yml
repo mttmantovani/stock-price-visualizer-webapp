@@ -1,18 +1,16 @@
-version: '3.8'
-
 services:
   server:
     build:
-      context: .
-      dockerfile: server/Dockerfile
+      context: ./server
+      dockerfile: ./Dockerfile
     ports:
       - "8000:8000"
 
   client:
     build:
-      context: .
-      dockerfile: client/Dockerfile
+      context: ./client
+      dockerfile: ./Dockerfile
     ports:
       - "5173:5173"
     environment:
-      - VITE_API_URL=http://localhost:8000
+      - VITE_WS_URL=${VITE_WS_URL}

@@ -1,10 +1,12 @@
 import { StockData } from "../models/StockData";
 
+const webSocketUrl = import.meta.env.VITE_WS_URL ?? "ws://localhost:8000";
+
 class WebSocketService {
   private socket: WebSocket;
 
   constructor(url: string) {
-    this.socket = new WebSocket(url);
+    this.socket = new WebSocket(`${webSocketUrl}/ws/${url}`);
   }
 
   public onMessage(callback: (data: StockData[]) => void) {

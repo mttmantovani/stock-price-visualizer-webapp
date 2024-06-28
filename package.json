@@ -1,0 +1,20 @@
+{
+  "name": "stock-price-visualizer",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "install": "npm run install:client && npm run install:server",
+    "install:client": "cd client && npm install",
+    "install:server": "cd server && pip install -r requirements.txt",
+    "dev": "concurrently \"npm run dev:client\" \"npm run dev:server\"",
+    "dev:client": "cd client && npm run dev",
+    "dev:server": "cd server && uvicorn main:app --reload",
+    "start:docker": "docker compose --env-file client/.env.local up --build -d",
+    "stop:docker": "docker compose down"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
