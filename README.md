@@ -37,6 +37,12 @@ You can start client and server in Docker using
 npm run start:docker
 ```
 
+or, without `npm` with:
+
+```bash
+docker compose --env-file client/.env.local up --build -d
+```
+
 ### In the terminal
 
 Alternatively, you can also start simultaneously client and server in your terminal with

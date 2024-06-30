@@ -10,7 +10,8 @@
     "dev:client": "cd client && npm run dev",
     "dev:server": "cd server && uvicorn main:app --reload",
     "start:docker": "docker compose --env-file client/.env.local up --build -d",
-    "stop:docker": "docker compose down"
+    "stop:docker": "docker compose down",
+    "package": "zip -r stock-price-visualizer.zip client server package.json README.md docker-compose.yml -x 'client/node_modules/*' 'client/dist/*' 'client/.env.production' 'server/__pycache__/*'"
   },
   "author": "",
   "license": "ISC",
