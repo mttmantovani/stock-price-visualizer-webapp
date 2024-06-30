@@ -55,7 +55,7 @@ const StockChart: React.FC<StockChartProps> = ({
 
   if (symbol.length === 0) {
     return (
-      <div>
+      <div className="message">
         <i>Enter a symbol (at least 1 character) </i>
       </div>
     );
@@ -63,15 +63,17 @@ const StockChart: React.FC<StockChartProps> = ({
 
   if (loading) {
     return (
-      <div>
-        <i>Loading...</i>
+      <div className="plot-container">
+        <div className="message">
+          <i>Loading...</i>
+        </div>
       </div>
     );
   }
 
   if (error) {
     return (
-      <div>
+      <div className="message">
         <i>No data to display</i>
       </div>
     );
@@ -83,19 +85,48 @@ const StockChart: React.FC<StockChartProps> = ({
       y: data.map((d) => d.Close),
       type: "scatter",
       mode: "lines",
-      marker: { color: "coral" },
+      marker: { color: "lightblue" },
+      line: { width: 4 },
     },
   ];
 
   const layout = {
-    title: `${symbol} Stock Price`,
+    title: {
+      text: `${symbol} Stock Price`,
+      font: {
+        color: "#ffffff",
+      },
+    },
+    xaxis: {
+      gridcolor: "#444444",
+      color: "#ffffff",
+      title: {
+        text: "Date",
+        font: {
+          color: "#ffffff",
+        },
+      },
+    },
+    yaxis: {
+      autorange: true,
+      gridcolor: "#444444",
+      color: "#ffffff",
+      title: {
+        text: "Price (USD)",
+        font: {
+          color: "#ffffff",
+        },
+      },
+    },
+    paper_bgcolor: "#333333",
+    plot_bgcolor: "#333333",
   };
 
   return (
     <div>
       <Plot data={plotData} layout={layout} />
       {lastUpdate && (
-        <div>
+        <div className="message">
           Last update: {formatDistanceToNow(lastUpdate, { addSuffix: true })}
         </div>
       )}

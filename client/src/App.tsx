@@ -8,19 +8,20 @@ const App: React.FC = () => {
   const [period, setPeriod] = useState("1d");
 
   return (
-    <div>
+    <div className="container">
       <h1>Stock Price Visualizer</h1>
-      <div>
-        <label>
-          Symbol:
+
+      <div className="input-group-container">
+        <div className="input-group">
+          <label>Symbol:</label>
           <input
             value={symbol}
             onChange={(e) => setSymbol(e.target.value.toUpperCase())}
           />
-        </label>
+        </div>
 
-        <label>
-          Interval:
+        <div className="input-group">
+          <label>Interval:</label>
           <select
             value={interval}
             onChange={(e) => setInterval(e.target.value)}
@@ -30,10 +31,10 @@ const App: React.FC = () => {
             <option value="1d">Daily</option>
             <option value="1wk">Weekly</option>
           </select>
-        </label>
+        </div>
 
-        <label>
-          Period:
+        <div className="input-group">
+          <label>Period:</label>
           <select value={period} onChange={(e) => setPeriod(e.target.value)}>
             <option value="1d">1 Day</option>
             <option value="5d">5 Days</option>
@@ -47,10 +48,12 @@ const App: React.FC = () => {
             <option value="ytd">Year to Date</option>
             <option value="max">Max</option>
           </select>
-        </label>
+        </div>
       </div>
       <br />
-      <StockChart symbol={symbol} interval={interval} period={period} />
+      <div className="plot-container">
+        <StockChart symbol={symbol} interval={interval} period={period} />
+      </div>
     </div>
   );
 };
